@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 20% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 10%;
+    --primary: 160 100% 45%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 210 20% 90%;
+    --secondary-foreground: 210 20% 10%;
+    --muted: 210 20% 92%;
+    --muted-foreground: 210 20% 40%;
+    --accent: 160 100% 40%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 20% 85%;
+    --input: 210 20% 85%;
+    --ring: 160 100% 45%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 160 100% 45%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 160 100% 40%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 160 100% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Typing effect */
+.typing-effect {
+  overflow: hidden;
+  border-right: 3px solid hsla(var(--primary), 1);
+  white-space: nowrap;
+  animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+.typing-effect-delay-1 {
+  overflow: hidden;
+  border-right: 3px solid hsla(var(--primary), 1);
+  white-space: nowrap;
+  animation: typing 2s steps(40, end) 0.5s both, blink-caret 0.75s step-end infinite 0.5s;
+}
+
+.typing-effect-delay-2 {
+  overflow: hidden;
+  border-right: 3px solid hsla(var(--primary), 1);
+  white-space: nowrap;
+  animation: typing 2s steps(40, end) 1s both, blink-caret 0.75s step-end infinite 1s;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: hsla(var(--primary), 1);
+  }
+}
+
+.bg-grid-small-white {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-grid-small-white {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.light .bg-grid-small-white {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+/* Animation */
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+/* Moving glow animation */
+.glow-effect {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, hsla(var(--primary), 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: -1;
+  animation: moveGlow 8s infinite alternate ease-in-out;
+}
+
+@keyframes moveGlow {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(0) translateY(0);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(90deg) translateX(100px) translateY(50px);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) translateX(0) translateY(100px);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(270deg) translateX(-100px) translateY(50px);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(0) translateY(0);
+  }
+}
+
+/* 3D Card Flip Effect */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Glassmorphism */
+.glassmorphic {
+  background: rgba(18, 18, 18, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light .glassmorphic {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Remove tab preview styles */
+.tab-preview {
+  display: none;
+}
+
+.tab-trigger:hover .tab-preview {
+  display: none;
+}
